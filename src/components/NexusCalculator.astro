@@ -1,1 +1,22 @@
+---
+import nexusData from '../data/nexus-thresholds.json';
+const states = nexusData.states;
+---
 
+<div style="max-width: 900px; margin: 3rem auto; padding: 2rem; background: white; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.08);">
+  <h2 style="text-align: center; margin-bottom: 1.5rem;">Your Sales Tax Nexus Status</h2>
+
+  <div style="margin-bottom: 2rem;">
+    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Add a State</label>
+    <select id="state-select" style="width: 100%; padding: 1rem; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 1.1rem;">
+      <option value="">Select State...</option>
+      {states.map(s => `<option value="${s.code}">${s.state} (${s.code})</option>`)}
+    </select>
+  </div>
+
+  <p style="text-align: center; color: #64748b; padding: 2rem;">Calculator logic coming in next update...</p>
+</div>
+
+<script>
+  console.log("Nexus Calculator loaded");
+</script>
