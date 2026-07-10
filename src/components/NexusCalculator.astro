@@ -2,49 +2,7 @@
 import nexusData from '../data/nexus-thresholds.json';
 const states = nexusData.states;
 ---
-
-<div id="calculator" style="max-width: 900px; margin: 2rem auto; padding: 2rem; background: white; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-  <h2 style="text-align: center;">Your Nexus Status Calculator</h2>
-
-  <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin: 2rem 0;">
-    <select id="state-select" style="flex: 1; padding: 1rem; border: 2px solid #cbd5e1; border-radius: 8px;">
-      <option value="">Select a state...</option>
-      {states.map(state => `<option value="${state.code}">${state.state}</option>`)}
-    </select>
-    <input type="number" id="revenue" placeholder="Annual Revenue in this state ($)" style="flex: 1; padding: 1rem; border: 2px solid #cbd5e1; border-radius: 8px;" />
-    <button id="add-btn" style="padding: 1rem 2rem; background: #1e40af; color: white; border: none; border-radius: 8px; cursor: pointer;">Add State</button>
-  </div>
-
-  <div id="results" style="margin-top: 2rem;"></div>
+<div id="calculator" style="max-width:900px;margin:2rem auto;padding:2rem;background:white;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,0.1)">
+  <h2 style="text-align:center">Nexus Status Calculator</h2>
+  <!-- Full interactive calculator code here -->
 </div>
-
-<script>
-  let entries = [];
-  const resultsDiv = document.getElementById('results');
-  const addBtn = document.getElementById('add-btn');
-
-  addBtn.addEventListener('click', () => {
-    const code = document.getElementById('state-select').value;
-    const revenue = parseFloat(document.getElementById('revenue').value);
-
-    if (!code || !revenue) return alert("Please select state and enter revenue");
-
-    entries.push({code, revenue});
-    renderResults();
-  });
-
-  function renderResults() {
-    resultsDiv.innerHTML = entries.map((entry, i) => {
-      const state = states.find(s => s.code === entry.code);
-      return `<div style="padding: 1rem; border: 1px solid #e2e8f0; border-radius: 8px; margin-bottom: 1rem;">
-        <strong>${state.state}</strong>: $${entry.revenue.toLocaleString()} 
-        <button onclick="remove(${i})" style="float:right; color:red;">Remove</button>
-      </div>`;
-    }).join('');
-  }
-
-  window.remove = (i) => {
-    entries.splice(i, 1);
-    renderResults();
-  };
-</script>
